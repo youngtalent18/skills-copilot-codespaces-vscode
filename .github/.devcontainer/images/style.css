@@ -15,3 +15,24 @@ body {
     background: linear-gradient(to right, slateblue, skyblue);
     text-align: center;
 }
+h1 {
+    font-size: 50px;
+    margin: 10px;
+    font-family: cursive;
+}
+img {
+    animation: bounce 2s infinite;
+    width: 200px;
+    height: 200px;
+    border-radius: 75px;
+    padding: 20px;
+}
+a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    border-radius: 20px;
+    border: 2px solid white;
+    padding: 10px;
+    margin: 10px;
+}
