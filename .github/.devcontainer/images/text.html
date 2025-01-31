@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login Form</title>
+        <link rel="stylesheet" href="samplestyle.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </head>
+    <body>
+
+            <h2>Login</h2>
+            <form onsubmit="return validateLogin()">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required><br>
+
+                <label for="password">password:</label>
+                <input type="password" name="password" id="password" onkeyup="checkPasswordStrength()" required><br>
+                <span class="toggle-password" onclick="togglePasswordVisibility()"><i class="fa fa-eye"></i></span>
+                <p id="password-strength"></p>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <p><a href="forget-password.html"class="forgot-password">Forgot Password</a></p>
+
+            <script>
+                function togglepassword() {
+                    let passwordField = document.getElementById("password");
+                    let icon = document.querySelector(".toggle-paasword");
+                    if (passwordField.type === "password") {
+                        passwordField.type = "text";
+                        icon.classList.remove("fa-eye");
+                        icon.classList.add("fa-eye-slash");
+                    } else {
+                        passwordField.type = "password";
+                        icon.classList.remove("fa-eye-slash");
+                        icon.classList.add("fa-eye");
+                    }
+                }
+                function validateLogin() {
+                   let username = document.getElementById("username").value;
+                   let password = document.getElementById("password").value;
+                   if (username==="" || password==="") {
+                    alert("Please fill in all fields.");
+                    return false;
+                   }
+                   if (password.length < 8) {
+                    alert("Password must be at least 8 characters long.");
+                    return false;
+                   }
+                   window.location.href = "dashboard.html";
+                   return false;
+                }
+                
+                function checkPasswordStrength() {
+                    let password = document.getElementById("password").value;
+                    let strengthText = document.getElementById("password-strength");
+
+                    let hasUpperCase = /[A-Z]/ .test(password);
+                    let hasNumber = /[0-9]/ .test(password);
+                    let hasSpecialChar = /[!#$%&^@(),.?:{}|<>]/.test(password);
+                    let lengthCheck = password.length >= 8;
+
+                    let strength = 0;
+                    if (hasUpperCase) strength++;
+                    if (hasNumber) strength++;
+                    if (hasSpecialChar) strength++;
+                    if (lengthCheck) strength++;
+
+                    if (strength === 0) {
+                        strengthText.innerHTML = "Weak(Too short)";
+                        strengthText.style.color = "red";
+                    } else if (strength <= 2) {
+                        strengthText.innerHTML ="Medium(Add uppercase, symbols or numbers)";
+                        strengthText.style.color = "orange";
+                    } else if (strength <= 3) {
+                        strengthText.innerHTML ="strong(Almost there,try making it longer)";
+                        strengthText.style.color = "green";                    
+                    } else {
+                        strengthText.innerHTML = "Very strong(Great job!)";
+                        strengthText.style.color = "green";
+                    }
+                }
+                </script>
+
+    </body>
+</html>
