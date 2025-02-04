@@ -10,6 +10,6 @@ function answer() {
             resultElement.innerText = `Incorrect. The correct answer is ${correctAnswer}.`;
         }
     } else {
-        resultElement.innerText = "Please select an answer.";
+        resultElement.innerText = "Please select an answer."; 
     }
 }
